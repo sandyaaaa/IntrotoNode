@@ -37,4 +37,19 @@ $(document).ready(function() {
   }
 });
 </script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  // load the socket.io library above, the connect to the server
+  // because the socket.io server is being run on the same server as your 
+  // express instance, you can connect() without any additional information
+  var socket = io.connect(); // TIP: .connect with no args does auto-discovery
+
+  // when 'filechanged' events fire, take our fileobj object and do something with it
+  socket.on('filechanged', function (fileobj) { 
+    console.log(fileobj);
+    alert('Refreshing... check the console...');
+    // window.location.reload() is a simple way to refresh the page
+    window.location.reload();
+  });
+</script>
 </html>
